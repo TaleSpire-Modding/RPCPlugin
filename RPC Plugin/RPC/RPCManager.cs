@@ -37,7 +37,6 @@ namespace RPCPlugin.RPC
         public static void SendChatMessage(string message, NGuid thingThatIsTalking)
         {
             PhotonView photonView = View;
-
             ChatSource source = ChatSource.anonymous;
             if (LocalPlayer.Id.Value == thingThatIsTalking)
                 source = CampaignSessionManager.PlayersInfo[LocalPlayer.Id].Rights.CanGm ?  
@@ -55,9 +54,7 @@ namespace RPCPlugin.RPC
         [PunRPC]
         public void ReceivedMessage(string message, string thingThatIsTalking, string chatsource)
         {
-            Debug.Log($"({message},{thingThatIsTalking},{chatsource})");
             var source = JsonConvert.DeserializeObject<ChatSource>(chatsource);
-
             foreach (KeyValuePair<string, Func<string, string, ChatSource, string>> handler in handlers)
             {
                 if (message.StartsWith(handler.Key))
