@@ -11,7 +11,7 @@ namespace RPCPlugin
         // Plugin info
         public const string Name = "HolloFoxes' RPC Plug-In";
         public const string Guid = "org.hollofox.plugins.rpc";
-        public const string Version = "1.0.0.0";
+        public const string Version = "0.9.0.0";
         public static RPCPlugin _instance;
         internal static ManualLogSource BPLogger;
 
