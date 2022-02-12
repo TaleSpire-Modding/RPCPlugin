@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Threading.Tasks;
+using Bounce.ManagedCollections;
 using Bounce.Unmanaged;
 using Newtonsoft.Json;
 using Photon;
@@ -33,13 +36,19 @@ namespace RPCPlugin.RPC
             if (LocalPlayer.Id.Value == thingThatIsTalking)
                 sourceRole = CampaignSessionManager.PlayersInfo[LocalPlayer.Id].Rights.CanGm ?  
                     SourceRole.gm : SourceRole.player;
-            foreach (CreatureBoardAsset asset in CreaturePresenter.AllCreatureAssets)
-            {
-                if (asset.Creature.UniqueId.Value == thingThatIsTalking)
+            if (sourceRole == SourceRole.anonymous)
+                Parallel.ForEach(CreaturePresenter.AllCreatureAssets, (asset) =>
                 {
-                    sourceRole = SourceRole.creature;
-                }
-            }
+                    if (asset.Creature.UniqueId.Value == thingThatIsTalking)
+                        sourceRole = SourceRole.creature;
+                });
+            if (sourceRole == SourceRole.anonymous)
+                Parallel.ForEach(
+                    (BList<HideVolumeItem>) typeof(HideVolumeManager).GetProperty("_hideVolumeItems", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null, null),
+                    (volume) =>
+                    {
+                        if (volume.HideVolume.Id == thingThatIsTalking) sourceRole = (SourceRole) 3;
+                    });
             photonView.RPC(nameof(ReceivedMessage), PhotonTargets.All, new object[] { message, thingThatIsTalking.ToString(), JsonConvert.SerializeObject(sourceRole) });
         }
 
