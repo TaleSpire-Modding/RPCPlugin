@@ -54,6 +54,7 @@ Build the project.
 Browse to the newly created ```bin/Debug``` or ```bin/Release``` folders and copy the ```RPCPlugin.dll``` to ```Steam\steamapps\common\TaleSpire\BepInEx\plugins```
 
 ## Changelog
+- 0.9.5: Updated depended dll
 - 0.9.4: Hide Volume Support and Parallelization
 - 0.9.3: Refactor RPCManager to Static class
 - 0.9.2: Use SourceRoll.dll and implement static methods

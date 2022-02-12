@@ -47,7 +47,7 @@ namespace RPCPlugin.RPC
                     (BList<HideVolumeItem>) typeof(HideVolumeManager).GetProperty("_hideVolumeItems", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null, null),
                     (volume) =>
                     {
-                        if (volume.HideVolume.Id == thingThatIsTalking) sourceRole = (SourceRole) 3;
+                        if (volume.HideVolume.Id == thingThatIsTalking) sourceRole = SourceRole.hideVolume;
                     });
             photonView.RPC(nameof(ReceivedMessage), PhotonTargets.All, new object[] { message, thingThatIsTalking.ToString(), JsonConvert.SerializeObject(sourceRole) });
         }

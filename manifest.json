@@ -1,6 +1,6 @@
 {
     "name": "RPCPlugin",
-    "version_number": "0.9.4",
+    "version_number": "0.9.5",
     "website_url": "https://github.com/TaleSpire-Modding/RPCPlugin",
     "description": "This is a developer tool to send network messages over RPC",
     "dependencies": [
