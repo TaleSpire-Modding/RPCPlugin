@@ -396,6 +396,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RPCPlugin.cs" />
+    <Compile Include="RPC\RPCInstance.cs" />
     <Compile Include="RPC\RPCManager.cs" />
   </ItemGroup>
   <ItemGroup>
