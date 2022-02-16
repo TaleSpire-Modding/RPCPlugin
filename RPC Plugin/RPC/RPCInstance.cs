@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Threading.Tasks;
 using Bounce.ManagedCollections;
 using Bounce.Unmanaged;
@@ -16,6 +15,7 @@ namespace RPCPlugin.RPC
         internal static Dictionary<string, Func<string, string, SourceRole, string>> Handlers = new Dictionary<string, Func<string, string, SourceRole, string>>();
         internal static RPCInstance Instance;
         internal static PhotonView View;
+        internal static BList<HideVolumeItem> hideVolumes;
 
         public static void Init()
         {
@@ -41,7 +41,7 @@ namespace RPCPlugin.RPC
                 });
             if (sourceRole == SourceRole.anonymous)
                 Parallel.ForEach(
-                    (BList<HideVolumeItem>) typeof(HideVolumeManager).GetProperty("_hideVolumeItems", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null, null),
+                    hideVolumes,
                     volume =>
                     {
                         if (volume.HideVolume.Id == thingThatIsTalking) sourceRole = SourceRole.hideVolume;
