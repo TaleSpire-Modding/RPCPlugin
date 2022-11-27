@@ -1,4 +1,5 @@
 # RPC Plugin
+[![.github/workflows/release.yml](https://github.com/TaleSpire-Modding/RPCPlugin/actions/workflows/release.yml/badge.svg)](https://github.com/TaleSpire-Modding/RPCPlugin/actions/workflows/release.yml)
 
 This is a plugin for TaleSpire using BepInEx.
 
@@ -37,24 +38,13 @@ For example, to use the above hander for "/doSomething" assuming it is a whisper
 ``RPCManager.SendMessage("/doSomething{\"I'm a\": \"json\"}", LocalPlayer.Id.Value)``
 
 ## Compiling
-```
-* BepInEx.dll  (Download from the BepInEx project.)
-* Bouncyrock.TaleSpire.Runtime (found in Steam\steamapps\common\TaleSpire\TaleSpire_Data\Managed)
-* UnityEngine.dll
-* UnityEngine.CoreModule.dll
-* UnityEngine.InputLegacyModule.dll 
-* UnityEngine.UI
-* Unity.TextMeshPro
-* Newtonsoft.Json
-* Photon
-```
 
-Build the project.
+Build the project using nuget.
 
 Browse to the newly created ```bin/Debug``` or ```bin/Release``` folders and copy the ```RPCPlugin.dll``` to ```Steam\steamapps\common\TaleSpire\BepInEx\plugins```
 
 ## Changelog
-- 2.0.0: Re-release
+- 2.0.0: Nuget and re-starting the project
 - 1.0.0: Slight Optimization, Official Release
 - 0.9.5: Updated depended dll
 - 0.9.4: Hide Volume Support and Parallelization
