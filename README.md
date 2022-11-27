@@ -54,6 +54,7 @@ Build the project.
 Browse to the newly created ```bin/Debug``` or ```bin/Release``` folders and copy the ```RPCPlugin.dll``` to ```Steam\steamapps\common\TaleSpire\BepInEx\plugins```
 
 ## Changelog
+- 2.0.0: Re-release
 - 1.0.0: Slight Optimization, Official Release
 - 0.9.5: Updated depended dll
 - 0.9.4: Hide Volume Support and Parallelization
