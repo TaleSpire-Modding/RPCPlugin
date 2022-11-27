@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace RPCPlugin.RPC
 {
-    public class RPCInstance: PunBehaviour
+    public sealed class RPCInstance: PunBehaviour
     {
         internal static Dictionary<string, Func<string, string, SourceRole, string>> Handlers = new Dictionary<string, Func<string, string, SourceRole, string>>();
         internal static RPCInstance Instance;
@@ -36,7 +36,7 @@ namespace RPCPlugin.RPC
             if (sourceRole == SourceRole.anonymous)
                 Parallel.ForEach(CreaturePresenter.AllCreatureAssets, asset =>
                 {
-                    if (asset.Creature.UniqueId.Value == thingThatIsTalking)
+                    if (asset.CreatureId.Value == thingThatIsTalking)
                         sourceRole = SourceRole.creature;
                 });
             if (sourceRole == SourceRole.anonymous)
