@@ -13,7 +13,6 @@ jobs:
     steps:
       - name: Setup Nuget
         uses: nuget/setup-nuget@v1
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -21,7 +20,7 @@ jobs:
         shell: pwsh
         id: package
         run: |
-          $json = Get-Content "manifest.json" | ConvertFrom-Json
+         $json = Get-Content "manifest.json" | ConvertFrom-Json
           $version = $json.version_number
           $name = $json.name
           $description = $json.description
@@ -30,7 +29,7 @@ jobs:
           echo "DESCRIPTION=${description}" >> $env:GITHUB_OUTPUT
           echo "PROJECT=RPCPlugin.csproj" >> $env:GITHUB_OUTPUT
           echo "PLUGIN=RPCPlugin.cs" >> $env:GITHUB_OUTPUT
-	  
+
       - name: Build
         shell: pwsh
         run: |
