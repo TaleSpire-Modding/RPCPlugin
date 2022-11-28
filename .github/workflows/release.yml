@@ -29,6 +29,12 @@ jobs:
           echo "DESCRIPTION=${description}" >> $env:GITHUB_OUTPUT
           echo "PROJECT=RPCPlugin.csproj" >> $env:GITHUB_OUTPUT
           echo "PLUGIN=RPCPlugin.cs" >> $env:GITHUB_OUTPUT
+          $dependencies = ""
+          foreach ($dep in $json.dependencies){
+            $first,$second,$rest = $dep -split '-',3
+            $dependencies = "${dependencies} ${first}-${second}@${rest}".Trim()
+          }
+          echo "DEPENDENCIES=${dependencies}" >> $env:GITHUB_OUTPUT
 
       - name: Build
         shell: pwsh
@@ -67,4 +73,4 @@ jobs:
           version: ${{steps.package.outputs.VERSION_NUMBER}} # Use the version from manifest
           community: talespire
           path: thunderstore
-          deps: bbepisTaleSpire-BepInExPack@5.4.10 brcoding-SetInjectionFlagPlugin@2.3.0 HolloFox_TS-Config_Manager@0.10.0
+          deps: ${{steps.package.outputs.DEPENDENCIES}}
