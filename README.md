@@ -97,6 +97,7 @@ Browse to the newly created ```bin/Debug``` or ```bin/Release``` folders and cop
 
 ## Changelog
 - 2.1.0: Added Binary message and Consumer workflow for messaging.
+- 2.0.1: Fix dependency in pipeline
 - 2.0.0: Nuget and re-starting the project
 - 1.0.0: Slight Optimization, Official Release
 - 0.9.5: Updated depended dll
