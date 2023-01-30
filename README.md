@@ -1,7 +1,7 @@
 # RPC Plugin
 [![.github/workflows/release.yml](https://github.com/TaleSpire-Modding/RPCPlugin/actions/workflows/release.yml/badge.svg)](https://github.com/TaleSpire-Modding/RPCPlugin/actions/workflows/release.yml)
 
-This is a plugin for TaleSpire using BepInEx.
+This is a plugin for TaleSpire using BepInEx, it creates a consumer and service for sending data over RPC. This is designed to be light weight for small messages. If you want large messages then you should host the file externally and only message a pointer to it. This is to reduce the impact on the performance and server costs from sending large messages.
 
 ## Install
 
@@ -87,7 +87,6 @@ public class MyMessage : RpcMessage
         }
     }
 ```
-
 
 ## Compiling
 
