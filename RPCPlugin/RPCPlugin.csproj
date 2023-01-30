@@ -16,6 +16,7 @@
     <licenseUrl>https://github.com/TaleSpire-Modding/RPCPlugin/raw/main/LICENSE.txt</licenseUrl>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <Authors>HolloFox</Authors>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\LICENSE.txt">

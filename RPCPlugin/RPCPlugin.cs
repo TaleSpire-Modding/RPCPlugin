@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using HarmonyLib;
+using RPCPlugin.Interfaces;
 using RPCPlugin.RPC;
 
 namespace RPCPlugin
@@ -22,11 +23,19 @@ namespace RPCPlugin
             harmony.PatchAll();
         }
 
+        private bool _registerSingletons = true;
+
         /// <summary>
         /// Triggered every frame
         /// </summary>
         public void Update()
         {
+            if (_registerSingletons)
+            {
+                InitOnLoad.Initialise();
+                _registerSingletons = false;
+            }
+
             if (RPCInstance.Instance == null && PhotonNetwork.inRoom)
                 RPCInstance.Init();
         }
