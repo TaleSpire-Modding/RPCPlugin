@@ -41,7 +41,7 @@ For example, to use the above hander for "/doSomething" assuming it is a whisper
 ### Usage Consumer and Messenger framework
 RPC Manager now supports a Consumer and messenger workflow allowing a singleton 
 ```CSharp
-public class MyMessage : RpcMessage
+    public class MyMessage : RpcMessage
     {
         // Example Data
         internal int I { get; set; }
