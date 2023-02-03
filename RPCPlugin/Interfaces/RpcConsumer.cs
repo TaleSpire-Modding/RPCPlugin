@@ -41,10 +41,10 @@ namespace RPCPlugin.Interfaces
     {
         public abstract byte[] Value();
 
-        public Guid Id()
+        public byte[] Id()
         {
             var assembly = GetType().AssemblyQualifiedName;
-            return new Guid(CreateMD5(assembly));
+            return CreateMD5(assembly);
         }
 
         public static byte[] CreateMD5(string input)

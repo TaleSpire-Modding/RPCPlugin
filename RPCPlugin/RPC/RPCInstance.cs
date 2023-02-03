@@ -76,7 +76,7 @@ namespace RPCPlugin.RPC
         {
             if (View != null)
             {
-                View.RPC(nameof(ReceivedBinaryMessage), targets, rpcMessage.Id().ToByteArray(), rpcMessage.Value());
+                View.RPC(nameof(ReceivedBinaryMessage), targets, rpcMessage.Id(), rpcMessage.Value());
             }
         }
 

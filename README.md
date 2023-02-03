@@ -95,6 +95,7 @@ Build the project using nuget.
 Browse to the newly created ```bin/Debug``` or ```bin/Release``` folders and copy the ```RPCPlugin.dll``` to ```Steam\steamapps\common\TaleSpire\BepInEx\plugins```
 
 ## Changelog
+- 2.1.1: Message Id Optimization
 - 2.1.0: Added Binary message and Consumer workflow for messaging.
 - 2.0.1: Fix dependency in pipeline
 - 2.0.0: Nuget and re-starting the project

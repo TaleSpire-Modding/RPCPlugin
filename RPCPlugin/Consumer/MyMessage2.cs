@@ -6,12 +6,12 @@
 //
 // namespace RPCPlugin.Consumer
 // {
-//     public class MyMessage : RpcMessage
+//     public class MyMessage2 : RpcMessage
 //     {
 //         // Example Data
 //         internal int I { get; set; }
 //
-//         public MyMessage()
+//         public MyMessage2()
 //         {
 //
 //         }
@@ -27,26 +27,26 @@
 //         }
 //
 //         // Construct from Binary
-//         public MyMessage(byte[] data)
+//         public MyMessage2(byte[] data)
 //         {
 //             I = BitConverter.ToInt32(data, 0);
 //         }
 //     }
 //
 //     [InitOnLoad]
-//     public class MyConsumer : RpcConsumer<MyMessage>
+//     public class MyConsumer2 : RpcConsumer<MyMessage2>
 //     {
-//         private static readonly MyConsumer instance = new MyConsumer();
-//         static MyConsumer() { } // Make sure it's truly lazy
+//         private static readonly MyConsumer2 instance = new MyConsumer2();
+//         static MyConsumer2() { } // Make sure it's truly lazy
 //
-//         public static MyConsumer Instance { get { return instance; } }
+//         public static MyConsumer2 Instance { get { return instance; } }
 //
 //         // My constructor (If I wanted something to happen)
-//         private MyConsumer(): base ()
+//         private MyConsumer2(): base ()
 //         {
 //         }
 //
-//         public override void Handle(MyMessage message)
+//         public override void Handle(MyMessage2 message)
 //         {
 //             Debug.Log(message.I);
 //         }
