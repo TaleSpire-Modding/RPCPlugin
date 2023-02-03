@@ -1,16 +1,14 @@
 ﻿using BepInEx;
 using HarmonyLib;
-using RPCPlugin.Interfaces;
-using RPCPlugin.RPC;
 
-namespace RPCPlugin
+namespace SampleRPCConsumer
 {
     [BepInPlugin(Guid, Name, Version)]
     public class RPCPlugin: BaseUnityPlugin
     {
         // Plugin info
-        public const string Name = "HolloFoxes' RPC Plug-In";
-        public const string Guid = "org.hollofox.plugins.rpc";
+        public const string Name = "HolloFoxes' Sample RPC Consumer";
+        public const string Guid = "org.hollofox.plugins.rpc.consumer";
         public const string Version = "0.0.0.0";
 
         /// <summary>
@@ -30,14 +28,7 @@ namespace RPCPlugin
         /// </summary>
         public void Update()
         {
-            if (_registerSingletons)
-            {
-                InitOnLoad.Initialise();
-                _registerSingletons = false;
-            }
 
-            if (RPCInstance.Instance == null && PhotonNetwork.inRoom)
-                RPCInstance.Init();
         }
     }
 }
