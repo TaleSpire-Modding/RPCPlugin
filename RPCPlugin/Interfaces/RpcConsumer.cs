@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -38,13 +39,17 @@ namespace RPCPlugin.Interfaces
     }
 
     public abstract class RpcMessage : IBinaryMessage
-    {
+    { 
         public abstract byte[] Value();
 
         public byte[] Id()
         {
-            var assembly = GetType().AssemblyQualifiedName;
-            return CreateMD5(assembly);
+            var name = GetType().AssemblyQualifiedName;
+            if (!RPCInstance.Ids.ContainsKey(name))
+            {
+                RPCInstance.Ids[name] = CreateMD5(name);
+            }
+            return RPCInstance.Ids[name];
         }
 
         public static byte[] CreateMD5(string input)

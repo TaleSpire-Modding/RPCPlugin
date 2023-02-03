@@ -66,6 +66,11 @@ namespace RPCPlugin.RPC
         /// Tracking consumers to unique id
         /// </summary>
         internal static Dictionary<Guid, IBinaryFactory> Binaries = new Dictionary<Guid, IBinaryFactory>();
+        
+        /// <summary>
+        /// Track assembly to byte[] mapping for hash caching
+        /// </summary>
+        internal static Dictionary<string, byte[]> Ids = new Dictionary<string, byte[]>();
 
         /// <summary>
         /// 
