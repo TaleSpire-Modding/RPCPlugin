@@ -35,9 +35,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Consumer\NewFolder\" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="TaleSpire.RPCPlugin" Version="2.1.1" />
   </ItemGroup>
 </Project>

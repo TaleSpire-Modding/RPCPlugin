@@ -12,7 +12,7 @@ namespace RPCPlugin
         public const string Name = "HolloFoxes' RPC Plug-In";
         public const string Guid = "org.hollofox.plugins.rpc";
         public const string Version = "0.0.0.0";
-
+        
         /// <summary>
         /// Method triggered when the plugin loads
         /// </summary>
