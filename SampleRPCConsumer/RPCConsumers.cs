@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
 using HarmonyLib;
+using PluginUtilities;
 using RPCPlugin.RPC;
 using SampleRPCConsumer.Consumer;
 using SampleRPCConsumer.Consumer.Messages;
@@ -9,8 +10,9 @@ using UnityEngine;
 namespace SampleRPCConsumer
 {
     [BepInPlugin(Guid, Name, Version)]
+    [BepInDependency(SetInjectionFlag.Guid)]
     [BepInDependency(RPCPlugin.RPCPlugin.Guid)]
-    public class RPCConsumers: BaseUnityPlugin
+    public class RpcConsumers: BaseUnityPlugin
     {
         // Plugin info
         public const string Name = "Author' Sample RPC Consumer";
@@ -49,13 +51,13 @@ namespace SampleRPCConsumer
         {
             // Can be used to determine if a board is loaded
             // Beware: Board loaded does not necessarily mean all the minis have properly loaded and are accessible
-            if (!Utility.Utility.isBoardLoaded()) return;
+            if (!LordAshes.Utility.IsBoardLoaded()) return;
             
             // Proper way to check for keyboard combinations. This not only tests for the required keys but it also checks
             // for not required keys. For example, if the required keys are LCTRL+M then LCTRL+SHIFT+M will not result in
             // a true check. Using the regular Unity Input check or even the TriggerKey.Value.IsUp() result the check being
             // true even if other modifiers are being pressed.
-            if (Utility.Utility.StrictKeyCheck(TriggerKey.Value))
+            if (LordAshes.Utility.StrictKeyCheck(TriggerKey.Value))
             {
                 var message = new MyMessage
                 {
@@ -64,7 +66,7 @@ namespace SampleRPCConsumer
                 RPCInstance.SendMessage(message);
             }
 
-            if (Utility.Utility.StrictKeyCheck(TriggerKey2.Value))
+            if (LordAshes.Utility.StrictKeyCheck(TriggerKey2.Value))
             {
                 var message = new MyMessage2
                 {

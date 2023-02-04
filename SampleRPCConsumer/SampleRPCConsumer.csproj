@@ -36,5 +36,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="TaleSpire.RPCPlugin" Version="2.1.1" />
+    <PackageReference Include="TaleSpire.SetInjectionFlagPlugin" Version="2.4.3" />
   </ItemGroup>
 </Project>
