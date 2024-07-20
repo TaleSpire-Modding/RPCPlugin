@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <TargetFramework>net48</TargetFramework>
@@ -35,7 +35,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="TaleSpire.RPCPlugin" Version="2.1.1" />
-    <PackageReference Include="TaleSpire.SetInjectionFlagPlugin" Version="2.4.3" />
+    <PackageReference Include="TaleSpire.RPCPlugin" Version="2.1.2" />
+    <PackageReference Include="TaleSpire.SetInjectionFlagPlugin" Version="2.5.0" />
   </ItemGroup>
 </Project>
