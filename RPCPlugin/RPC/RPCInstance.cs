@@ -31,20 +31,19 @@ namespace RPCPlugin.RPC
             View.viewID = 606;
         }
 
+        // public void SendMessage(string message, NGuid thingThatIsTalking) => SendMessage(message, thingThatIsTalking);
+
         public static void SendMessage(string message, NGuid thingThatIsTalking)
         {
+            Debug.Log($"message: {message}, thingThatIsTalking: {thingThatIsTalking}");
             var photonView = View;
             var sourceRole = SourceRole.anonymous;
             if (LocalPlayer.Id.Value == thingThatIsTalking)
                 sourceRole = CampaignSessionManager.PlayersInfo[LocalPlayer.Id].Rights.CanGm
                     ? SourceRole.gm
                     : SourceRole.player;
-            if (sourceRole == SourceRole.anonymous)
-                Parallel.ForEach(CreaturePresenter.AllCreatureAssets, asset =>
-                {
-                    if (asset.CreatureId.Value == thingThatIsTalking)
+            if (sourceRole == SourceRole.anonymous && CreaturePresenter.TryGetAsset(new CreatureGuid(thingThatIsTalking), out var c))
                         sourceRole = SourceRole.creature;
-                });
             if (sourceRole == SourceRole.anonymous)
                 Parallel.ForEach(
                     hideVolumes,

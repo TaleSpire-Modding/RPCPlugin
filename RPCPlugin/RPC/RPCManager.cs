@@ -12,7 +12,12 @@ namespace RPCPlugin.RPC
         public static void RemoveHandler(string key)
             => RPCInstance.Handlers.Remove(key);
 
-        public static void SendMessage(string message, NGuid thingThatIsTalking)
-            => RPCInstance.SendMessage(message, thingThatIsTalking);
+        public static void SendMessage(string message, NGuid source)
+        {
+            UnityEngine.Debug.Log("RPCManager: Sending " + message + " (signature " + source.ToString() + ")");
+            
+            RPCInstance.SendMessage(message, source);
+        }
+        //=> RPCInstance.SendMessage(message, thingThatIsTalking);
     }
 }
