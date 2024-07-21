@@ -7,6 +7,7 @@ using Bounce.Unmanaged;
 using Photon;
 using Talespire;
 using UnityEngine;
+using static Mono.Security.X509.X520;
 
 namespace RPCPlugin.RPC
 {
@@ -66,11 +67,35 @@ namespace RPCPlugin.RPC
         [PunRPC]
         public void ReceivedMessage(string message, string thingThatIsTalking, SourceRole chatSource)
         {
+            foreach (KeyValuePair<string, Func<string, string, SourceRole, string>> handler in Handlers)
+            {
+                Debug.Log("RPC Plugin: ParseMessage: Found Handler '" + handler.Key + "'");
+                if (message.StartsWith(handler.Key))
+                {
+                    Debug.Log("RPC: ParseMessage: Applying Handler '" + handler.Key + "'");
+                    try
+                    {
+                        message = handler.Value(message, thingThatIsTalking, chatSource);
+                    }
+                    catch (Exception x)
+                    {
+                        Debug.LogWarning("RPC Plugin: ParseMessage: Exception In Handler: " + x.Message);
+                        Debug.LogException(x);
+                        message = "";
+                    }
+                    Debug.Log("RPC Plugin: ParseMessage: Post Handler: Title = '" + Convert.ToString(thingThatIsTalking) + "' Message = '" + Convert.ToString(message) + "'");
+                    if (message == null) { return; }
+                    if (message.Trim() == "") { return; }
+                    break;
+                }
+            }
+
+            /*
             Parallel.ForEach(Handlers, handler =>
             {
                 if (message.StartsWith(handler.Key))
                     _ = handler.Value(message, thingThatIsTalking, chatSource);
-            });
+            });*/
         }
 
     }
