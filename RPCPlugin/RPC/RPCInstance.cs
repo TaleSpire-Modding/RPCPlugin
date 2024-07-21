@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Bounce.ManagedCollections;
 using Bounce.Unmanaged;
-using Newtonsoft.Json;
 using Photon;
 using Talespire;
 using UnityEngine;
@@ -37,32 +37,39 @@ namespace RPCPlugin.RPC
         {
             Debug.Log($"message: {message}, thingThatIsTalking: {thingThatIsTalking}");
             var photonView = View;
-            var sourceRole = SourceRole.anonymous;
-            if (LocalPlayer.Id.Value == thingThatIsTalking)
-                sourceRole = CampaignSessionManager.PlayersInfo[LocalPlayer.Id].Rights.CanGm
-                    ? SourceRole.gm
-                    : SourceRole.player;
-            if (sourceRole == SourceRole.anonymous && CreaturePresenter.TryGetAsset(new CreatureGuid(thingThatIsTalking), out var c))
-                        sourceRole = SourceRole.creature;
-            if (sourceRole == SourceRole.anonymous)
-                Parallel.ForEach(
-                    hideVolumes,
-                    volume =>
-                    {
-                        if (volume.HideVolume.Id == thingThatIsTalking) sourceRole = SourceRole.hideVolume;
-                    });
-            photonView.RPC(nameof(ReceivedMessage), PhotonTargets.All,
-                new object[] { message, thingThatIsTalking.ToString(), JsonConvert.SerializeObject(sourceRole) });
+            SourceRole sourceRole = SourceRole.other;
+            
+            if (message.Contains("ANONYMOUS", StringComparison.OrdinalIgnoreCase))
+            {
+                sourceRole = SourceRole.anonymous;
+            }
+            else if (CampaignSessionManager.PlayersInfo.TryGetValue(new PlayerGuid(thingThatIsTalking), out var playerInfo))
+            {
+                sourceRole = playerInfo.Rights.CanGm ? SourceRole.gm : SourceRole.player;
+            }
+            else if (CreaturePresenter.TryGetAsset(new CreatureGuid(thingThatIsTalking), out var c))
+            {
+                sourceRole = SourceRole.creature;
+            }
+            else if (hideVolumes.ToArray().Any(hv => hv.HideVolume.Id == thingThatIsTalking))
+            {
+                sourceRole = SourceRole.hideVolume;
+            }
+
+            photonView.RPC(nameof(ReceivedMessage), 
+                PhotonTargets.All, 
+                new object[] { message, thingThatIsTalking.ToString(), sourceRole }
+                );
         }
 
+
         [PunRPC]
-        public void ReceivedMessage(string message, string thingThatIsTalking, string chatSource)
+        public void ReceivedMessage(string message, string thingThatIsTalking, SourceRole chatSource)
         {
-            var source = JsonConvert.DeserializeObject<SourceRole>(chatSource);
             Parallel.ForEach(Handlers, handler =>
             {
                 if (message.StartsWith(handler.Key))
-                    _ = handler.Value(message, thingThatIsTalking, source);
+                    _ = handler.Value(message, thingThatIsTalking, chatSource);
             });
         }
 
