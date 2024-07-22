@@ -63,6 +63,7 @@ jobs:
           Copy-Item -Path manifest.json -Destination 'thunderstore'
           Copy-Item -Path README.md -Destination 'thunderstore'
           Copy-Item -Path RPCPlugin/bin/Release/net48/RPCPlugin.dll -Destination 'thunderstore'
+          Copy-Item -Path RPCPlugin/bin/Release/net48/SourceRole.dll -Destination 'thunderstore'
       
       - uses: GreenTF/upload-thunderstore-package@v2.2
         with:
