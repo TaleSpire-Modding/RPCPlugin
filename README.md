@@ -109,9 +109,3 @@ Browse to the newly created ```bin/Debug``` or ```bin/Release``` folders and cop
 - 0.9.2: Use SourceRoll.dll and implement static methods
 - 0.9.1: remove logging
 - 0.9.0: Alpha release
-
-## Shoutouts
-Shoutout to my Patreons on https://www.patreon.com/HolloFox recognising your
-mighty contribution to my caffeine addiciton:
-- John Fuller
-- [Tales Tavern](https://talestavern.com/) - MadWizard
