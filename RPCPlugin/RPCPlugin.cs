@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Logging;
 using HarmonyLib;
 using RPCPlugin.Interfaces;
 using RPCPlugin.RPC;
@@ -12,12 +13,15 @@ namespace RPCPlugin
         public const string Name = "HolloFoxes' RPC Plug-In";
         public const string Guid = "org.hollofox.plugins.rpc";
         public const string Version = "2.2.1.0";
+
+        internal static ManualLogSource InternalLogger;
         
         /// <summary>
         /// Method triggered when the plugin loads
         /// </summary>
         public void Awake()
         {
+            InternalLogger = Logger;
             Logger.LogInfo($"In Awake for {Name}");
             var harmony = new Harmony(Guid);
             harmony.PatchAll();

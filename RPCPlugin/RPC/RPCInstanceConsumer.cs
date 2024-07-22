@@ -46,7 +46,7 @@ namespace RPCPlugin.RPC
 
             if (!Binaries.ContainsKey(id))
             {
-                Debug.Log($"RPC Key not found: {id}");
+                RPCPlugin.InternalLogger.LogDebug($"RPC Key not found: {id}");
                 return;
             }
             Binaries[id].Handle(message);

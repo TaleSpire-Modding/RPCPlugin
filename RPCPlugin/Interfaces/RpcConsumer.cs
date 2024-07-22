@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using RPCPlugin.RPC;
-using UnityEngine;
 using MD5 = System.Security.Cryptography.MD5;
 
 namespace RPCPlugin.Interfaces
@@ -15,7 +14,7 @@ namespace RPCPlugin.Interfaces
 
         public void Handle(byte[] data)
         {
-            var message = (T)Activator.CreateInstance(typeof(T), data);
+            T message = (T)Activator.CreateInstance(typeof(T), data);
             Handle(message);
         }
 
@@ -31,10 +30,10 @@ namespace RPCPlugin.Interfaces
 
         protected RpcConsumer()
         {
-            var assembly = typeof(T).AssemblyQualifiedName;
-            var key = new Guid(RpcMessage.CreateMD5(assembly));
+            string assembly = typeof(T).AssemblyQualifiedName;
+            Guid key = new Guid(RpcMessage.CreateMD5(assembly));
             RPCInstance.Binaries.Add(key, this);
-            Debug.Log($"Registered assembly: {key} {assembly}");
+            RPCPlugin.InternalLogger.LogDebug($"Registered assembly: {key} {assembly}");
         }
     }
 
@@ -44,7 +43,7 @@ namespace RPCPlugin.Interfaces
 
         public byte[] Id()
         {
-            var name = GetType().AssemblyQualifiedName;
+            string name = GetType().AssemblyQualifiedName;
             if (!RPCInstance.Ids.ContainsKey(name))
             {
                 RPCInstance.Ids[name] = CreateMD5(name);
@@ -54,9 +53,9 @@ namespace RPCPlugin.Interfaces
 
         public static byte[] CreateMD5(string input)
         {
-            using var md5 = MD5.Create();
-            var inputBytes = Encoding.ASCII.GetBytes(input);
-            var hashBytes = md5.ComputeHash(inputBytes);
+            using MD5 md5 = MD5.Create();
+            byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+            byte[] hashBytes = md5.ComputeHash(inputBytes);
             return hashBytes;
         }
     }
@@ -76,7 +75,7 @@ namespace RPCPlugin.Interfaces
         public static void Initialise()
         {
             // get a list of types which are marked with the InitOnLoad attribute
-            var types =
+            IEnumerable<Type> types =
                 from t in AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes())
                 where t.GetCustomAttributes(typeof(InitOnLoad), false).Any()
                 select t;
