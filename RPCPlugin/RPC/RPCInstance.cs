@@ -35,7 +35,7 @@ namespace RPCPlugin.RPC
         public static void SendMessage(string message, NGuid thingThatIsTalking)
         {
             RPCPlugin.InternalLogger.LogDebug($"message: {message}, thingThatIsTalking: {thingThatIsTalking}");
-            var photonView = View;
+            PhotonView photonView = View;
             SourceRole sourceRole = SourceRole.other;
             
             if (message.Contains("ANONYMOUS", StringComparison.OrdinalIgnoreCase))

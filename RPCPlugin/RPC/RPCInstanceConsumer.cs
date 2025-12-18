@@ -28,10 +28,7 @@ namespace RPCPlugin.RPC
         /// <param name="targets"></param>
         public static void SendMessage(RpcMessage rpcMessage, PhotonTargets targets = PhotonTargets.All)
         {
-            if (View != null)
-            {
-                View.RPC(nameof(ReceivedBinaryMessage), targets, rpcMessage.Id(), rpcMessage.Value());
-            }
+            View?.RPC(nameof(ReceivedBinaryMessage), targets, rpcMessage.Id(), rpcMessage.Value());
         }
 
         /// <summary>
