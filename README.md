@@ -108,5 +108,13 @@ Browse to the newly created ```bin/Debug``` or ```bin/Release``` folders and cop
 - 0.9.4: Hide Volume Support and Parallelization
 - 0.9.3: Refactor RPCManager to Static class
 - 0.9.2: Use SourceRoll.dll and implement static methods
+
+## Shoutouts
+<!-- CONTRIBUTORS-START -->
+Shoutout to my past [Patreons](https://www.patreon.com/HolloFox), recognising your mighty support and contribution to my caffeine addiction:
+- [Demongund](https://www.twitch.tv/demongund)
+- [Tales Tavern](https://talestavern.com/) - MadWizard
+- Joaqim Planstedt
+<!-- CONTRIBUTORS-END -->
 - 0.9.1: remove logging
 - 0.9.0: Alpha release
