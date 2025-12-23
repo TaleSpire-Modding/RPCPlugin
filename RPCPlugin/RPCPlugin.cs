@@ -1,18 +1,21 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
+using ModdingTales;
+using PluginUtilities;
 using RPCPlugin.Interfaces;
 using RPCPlugin.RPC;
 
 namespace RPCPlugin
 {
     [BepInPlugin(Guid, Name, Version)]
+    [BepInDependency(SetInjectionFlag.Guid)]
     public class RPCPlugin: BaseUnityPlugin
     {
         // Plugin info
-        public const string Name = "HolloFoxes' RPC Plug-In";
+        public const string Name = "RPC Plug-In";
         public const string Guid = "org.hollofox.plugins.rpc";
-        public const string Version = "2.2.1.0";
+        public const string Version = "0.0.0.0";
 
         internal static ManualLogSource InternalLogger;
         
@@ -25,6 +28,7 @@ namespace RPCPlugin
             Logger.LogInfo($"In Awake for {Name}");
             var harmony = new Harmony(Guid);
             harmony.PatchAll();
+            ModdingUtils.AddPluginToMenuList(this, "HolloFoxes'");
         }
 
         private bool _registerSingletons = true;

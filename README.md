@@ -95,6 +95,7 @@ Build the project using nuget.
 Browse to the newly created ```bin/Debug``` or ```bin/Release``` folders and copy the ```RPCPlugin.dll``` to ```Steam\steamapps\common\TaleSpire\BepInEx\plugins```
 
 ## Changelog
+- 2.3.1: Update Project files and fix bepinex dependencies with SetInjectionFlag
 - 2.3.0: Tidied up references, static typing, and fix github pipeline,
 - 2.2.1: Fix threading issue
 - 2.2.0: Fixed RPCManager and now is a supported provider for ADP
