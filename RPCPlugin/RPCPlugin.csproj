@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <TargetFramework>net48</TargetFramework>
@@ -33,14 +33,32 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="TaleSpire" Version="1.5.0"></PackageReference>
-    <PackageReference Include="Talespire.BepInEx" Version="5.4.22"></PackageReference>
-    <PackageReference Include="TaleSpire.SetInjectionFlagPlugin" Version="3.0.0" />
+    <PackageReference Include="TaleSpire" Version="1.5.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Talespire.BepInEx" Version="5.4.22">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="TaleSpire.SetInjectionFlagPlugin" Version="3.0.0" >
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="ZeroFormatter" Version="1.6.4" />
+    <PackageReference Include="ZeroFormatter.Analyzer" Version="1.1.1" />
+    <PackageReference Include="ZeroFormatter.Interfaces" Version="1.6.4" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SourceRole">
       <HintPath>..\SourceRole.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+  </ItemGroup>
+  <PropertyGroup>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Remove Talespire.* runtime assemblies from output -->
+    <ReferenceCopyLocalPaths
+      Remove="@(ReferenceCopyLocalPaths)"
+      Condition="$([System.String]::Copy('%(ReferenceCopyLocalPaths.FileName)').StartsWith('Talespire.'))" />
   </ItemGroup>
 </Project>
