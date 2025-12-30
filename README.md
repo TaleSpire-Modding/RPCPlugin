@@ -95,6 +95,7 @@ Build the project using nuget.
 Browse to the newly created ```bin/Debug``` or ```bin/Release``` folders and copy the ```RPCPlugin.dll``` to ```Steam\steamapps\common\TaleSpire\BepInEx\plugins```
 
 ## Changelog
+- 2.4.1: Bump SetInjectionFlag package version
 - 2.4.0: DependencyUnityPlugins is now used and implement logic for unpatching
 - 2.3.2: ZeroFormatter was missed, repacked into Deployment.
 - 2.3.1: Update Project files and fix bepinex dependencies with SetInjectionFlag

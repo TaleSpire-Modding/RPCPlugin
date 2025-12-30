@@ -29,7 +29,6 @@ namespace RPCPlugin
             Logger.LogInfo($"In Awake for {Name}");
             harmony = new Harmony(Guid);
             harmony.PatchAll();
-            ModdingUtils.AddPluginToMenuList(this, "HolloFoxes'");
         }
 
         protected override void OnDestroyed()
