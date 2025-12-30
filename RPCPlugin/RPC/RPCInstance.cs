@@ -30,6 +30,17 @@ namespace RPCPlugin.RPC
             View.viewID = 606;
         }
 
+        public static void Destroy()
+        {
+            if (Instance != null) return;
+            var obj = Instance.gameObject;
+            Destroy(obj);
+            Instance = null;
+            View = null;
+            hideVolumes = null;
+            Handlers.Clear();
+        }
+
         // public void SendMessage(string message, NGuid thingThatIsTalking) => SendMessage(message, thingThatIsTalking);
 
         public static void SendMessage(string message, NGuid thingThatIsTalking)

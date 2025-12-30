@@ -10,7 +10,7 @@ namespace RPCPlugin
 {
     [BepInPlugin(Guid, Name, Version)]
     [BepInDependency(SetInjectionFlag.Guid)]
-    public class RPCPlugin: BaseUnityPlugin
+    public class RPCPlugin : DependencyUnityPlugin
     {
         // Plugin info
         public const string Name = "RPC Plug-In";
@@ -18,17 +18,32 @@ namespace RPCPlugin
         public const string Version = "0.0.0.0";
 
         internal static ManualLogSource InternalLogger;
+        internal static Harmony harmony;
         
         /// <summary>
         /// Method triggered when the plugin loads
         /// </summary>
-        public void Awake()
+        protected override void OnAwake()
         {
             InternalLogger = Logger;
             Logger.LogInfo($"In Awake for {Name}");
-            var harmony = new Harmony(Guid);
+            harmony = new Harmony(Guid);
             harmony.PatchAll();
             ModdingUtils.AddPluginToMenuList(this, "HolloFoxes'");
+        }
+
+        protected override void OnDestroyed()
+        {
+            InternalLogger = null;
+
+            RPCInstance.Destroy();
+
+            harmony.UnpatchSelf();
+
+            harmony = null;
+            InternalLogger = null;
+
+            Logger.LogDebug($"{Name} unloaded");
         }
 
         private bool _registerSingletons = true;

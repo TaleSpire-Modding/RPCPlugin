@@ -39,7 +39,7 @@
     <PackageReference Include="Talespire.BepInEx" Version="5.4.22">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="TaleSpire.SetInjectionFlagPlugin" Version="3.0.0" >
+    <PackageReference Include="TaleSpire.SetInjectionFlagPlugin" Version="3.3.3">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="ZeroFormatter" Version="1.6.4" />
@@ -57,8 +57,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Remove Talespire.* runtime assemblies from output -->
-    <ReferenceCopyLocalPaths
-      Remove="@(ReferenceCopyLocalPaths)"
-      Condition="$([System.String]::Copy('%(ReferenceCopyLocalPaths.FileName)').StartsWith('Talespire.'))" />
+    <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="$([System.String]::Copy('%(ReferenceCopyLocalPaths.FileName)').StartsWith('Talespire.'))" />
   </ItemGroup>
 </Project>
