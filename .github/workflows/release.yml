@@ -63,9 +63,6 @@ jobs:
           Copy-Item -Path manifest.json -Destination 'thunderstore'
           Copy-Item -Path README.md -Destination 'thunderstore'
           Copy-Item -Path RPCPlugin/bin/Release/net48/RPCPlugin.dll -Destination 'thunderstore'
-          Copy-Item -Path RPCPlugin/bin/Release/net48/SourceRole.dll -Destination 'thunderstore'
-          Copy-Item -Path RPCPlugin/bin/Release/net48/ZeroFormatter.dll -Destination 'thunderstore'
-          Copy-Item -Path RPCPlugin/bin/Release/net48/ZeroFormatter.Interfaces.dll -Destination 'thunderstore'
           Compress-Archive -Path ./thunderstore/* -DestinationPath ./thunderstore/thunderstore.zip -Force
       
       - uses: GreenTF/upload-thunderstore-package@55327864b734687f553e23309743a66af21dfc40
