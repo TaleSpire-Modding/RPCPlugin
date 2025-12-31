@@ -95,22 +95,23 @@ Build the project using nuget.
 Browse to the newly created ```bin/Debug``` or ```bin/Release``` folders and copy the ```RPCPlugin.dll``` to ```Steam\steamapps\common\TaleSpire\BepInEx\plugins```
 
 ## Changelog
+- 2.4.2: Moved Binary Serialization libraries into separate modpack so they don't have to get re-downloaded each update.
 - 2.4.1: Bump SetInjectionFlag package version
-- 2.4.0: DependencyUnityPlugins is now used and implement logic for unpatching
+- 2.4.0: DependencyUnityPlugins is now used and implements logic for unpatching
 - 2.3.2: ZeroFormatter was missed, repacked into Deployment.
 - 2.3.1: Update Project files and fix bepinex dependencies with SetInjectionFlag
-- 2.3.0: Tidied up references, static typing, and fix github pipeline,
+- 2.3.0: Tidied up references, static typing, and fix github pipeline.
 - 2.2.1: Fix threading issue
-- 2.2.0: Fixed RPCManager and now is a supported provider for ADP
-- 2.1.2: Sample project now uploaded on gitrepo using message and consumer
+- 2.2.0: Fixed RPCManager and now it is a supported provider for ADP
+- 2.1.2: Sample project now uploaded on the git repo using message and consumer
 - 2.1.1: Message Id Optimization
 - 2.1.0: Added Binary message and Consumer workflow for messaging.
 - 2.0.1: Fix dependency in pipeline
-- 2.0.0: Nuget and re-starting the project
+- 2.0.0: NuGet and restarting the project
 - 1.0.0: Slight Optimization, Official Release
 - 0.9.5: Updated depended dll
 - 0.9.4: Hide Volume Support and Parallelization
-- 0.9.3: Refactor RPCManager to Static class
+- 0.9.3: Refactor RPCManager to a static class
 - 0.9.2: Use SourceRoll.dll and implement static methods
 - 0.9.1: remove logging
 - 0.9.0: Alpha release
