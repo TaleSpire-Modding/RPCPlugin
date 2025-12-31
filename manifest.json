@@ -1,10 +1,11 @@
 {
     "name": "RPCPlugin",
-    "version_number": "2.4.1",
+    "version_number": "2.4.2",
     "website_url": "https://github.com/TaleSpire-Modding/RPCPlugin",
     "description": "This is a developer network tool to send messages over RPC via Photon",
     "dependencies": [
-      "bbepisTaleSpire-BepInExPack-5.4.10",
-      "brcoding-SetInjectionFlagPlugin-3.3.4"
+        "bbepisTaleSpire-BepInExPack-5.4.10",
+        "brcoding-SetInjectionFlagPlugin-3.3.4",
+        "HolloFox_TS-Binary_Serialization_Libraries-1.0.0"
     ]
 }
