@@ -1,7 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
-using ModdingTales;
 using PluginUtilities;
 using RPCPlugin.Interfaces;
 using RPCPlugin.RPC;
@@ -10,7 +9,7 @@ namespace RPCPlugin
 {
     [BepInPlugin(Guid, Name, Version)]
     [BepInDependency(SetInjectionFlag.Guid)]
-    public class RPCPlugin : DependencyUnityPlugin
+    public class RPCPlugin : DependencyUnityPlugin<RPCPlugin>
     {
         // Plugin info
         public const string Name = "RPC Plug-In";
@@ -35,9 +34,16 @@ namespace RPCPlugin
         {
             InternalLogger = null;
 
-            RPCInstance.Destroy();
+            try
+            {
+                RPCInstance.Destroy();
+            }
+            catch
+            {
+                // ignored
+            }
 
-            harmony.UnpatchSelf();
+            harmony?.UnpatchSelf();
 
             harmony = null;
             InternalLogger = null;
