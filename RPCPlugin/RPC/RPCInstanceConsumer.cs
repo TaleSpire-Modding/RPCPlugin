@@ -2,7 +2,6 @@
 using RPCPlugin.Interfaces;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace RPCPlugin.RPC
 {

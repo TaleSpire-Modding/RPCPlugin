@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Bounce.ManagedCollections;
 using Bounce.Unmanaged;
 using Photon;
 using Talespire;
@@ -19,7 +17,6 @@ namespace RPCPlugin.RPC
 
         internal static RPCInstance Instance;
         internal static PhotonView View;
-        internal static BList<HideVolumeItem> hideVolumes;
 
         public static void Init()
         {
@@ -37,7 +34,6 @@ namespace RPCPlugin.RPC
             Destroy(obj);
             Instance = null;
             View = null;
-            hideVolumes = null;
             Handlers.Clear();
         }
 
@@ -61,7 +57,7 @@ namespace RPCPlugin.RPC
             {
                 sourceRole = SourceRole.creature;
             }
-            else if (hideVolumes.ToArray().Any(hv => hv.HideVolume.Id == thingThatIsTalking))
+            else if (HideVolumeManager.HasInstance && HideVolumeManager.Instance.TryGetHideVolumeData(thingThatIsTalking,out var d))
             {
                 sourceRole = SourceRole.hideVolume;
             }
